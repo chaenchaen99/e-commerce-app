@@ -24,11 +24,14 @@ dart_code_metrics:
     - no-magic-number: false
     - prefer-moving-to-variable: false
     - avoid-ignoring-return-values: false
+    - sort_named_constructors_first: false
     - no-empty-block: false
     - format-comment: false
     - avoid-shrink-wrap-in-lists: false
+    - always_put_required_named_parameters_first: false
     - prefer-extracting-callbacks: false
     - no-equal-arguments: false
+    - named_arguments_sorted_by_order: false
     - prefer-static-class:
         ignore-private: true
         ignore-names:
