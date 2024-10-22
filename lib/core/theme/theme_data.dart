@@ -7,7 +7,6 @@ import 'custom/custom_theme.dart';
 class CustomThemeData {
   static ThemeData get themeData => ThemeData(
         useMaterial3: true,
-        colorScheme: CustomTheme.colorScheme,
         fontFamily: 'Pretendard',
         textTheme: CustomTheme.textTheme,
         dividerTheme: DividerThemeData(color: AppColors.outline),
@@ -16,11 +15,11 @@ class CustomThemeData {
             borderSide: BorderSide(color: AppColors.primary, width: 2),
           ),
           indicatorSize: TabBarIndicatorSize.tab,
-          labelColor: CustomTheme.colorScheme.primary,
+          labelColor: AppColors.primary,
           labelStyle: CustomTheme.textTheme.titleSmall.semiBold,
-          unselectedLabelColor: CustomTheme.colorScheme.contentSecondary,
+          unselectedLabelColor: AppColors.contentSecondary,
           unselectedLabelStyle: CustomTheme.textTheme.titleSmall,
-          overlayColor: MaterialStatePropertyAll<Color>(
+          overlayColor: WidgetStatePropertyAll<Color>(
             Colors.grey[300] ?? Colors.grey,
           ),
         ),
