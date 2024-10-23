@@ -10,13 +10,7 @@ import 'service_locator.dart';
 
 void main() async {
   setLocator();
-  // final menus = await DisplayUsecase(DisplayRepositoryImpl(DisplayMockApi()))
-  //     .execute(usecase: GetMenusUsecase(MallType.market));
 
-  final menus = await locator<DisplayUsecase>()
-      .execute(usecase: GetMenusUsecase(MallType.market));
-
-  print(menus);
   runApp(const MyApp());
 }
 
