@@ -5,7 +5,7 @@ part 'response_wrapper.g.dart';
 part 'response_wrapper.freezed.dart';
 
 @Freezed(genericArgumentFactories: true)
-class ResponseWrapper<T> with _$ResponseWrapper {
+class ResponseWrapper<T> with _$ResponseWrapper<T> {
   const factory ResponseWrapper({
     @Default('') String status,
     @Default('') String code,
