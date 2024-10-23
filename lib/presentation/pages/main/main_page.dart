@@ -8,17 +8,19 @@ import '../category/category_page.dart';
 import '../home/home_page.dart';
 import '../search/search_page.dart';
 import '../user/user_page.dart';
+import 'component/top_app_bar/top_app_bar.dart';
 import 'cubit/bottom_nav_cubit.dart';
+import 'cubit/mall_type_cubit.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => BottomNavCubit(),
-      child: MainPageView(),
-    );
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => BottomNavCubit()),
+      BlocProvider(create: (_) => MallTypeCubit()),
+    ], child: MainPageView());
   }
 }
 
@@ -28,46 +30,7 @@ class MainPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(44),
-        child: Container(
-          color: AppColors.primary,
-          padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0),
-          child: AppBar(
-              leading: Padding(
-                padding: EdgeInsets.all(8),
-                child: SvgPicture.asset(AppIcons.mainLogo),
-              ),
-              title: Text(
-                'tabBar',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: SvgPicture.asset(
-                    AppIcons.location,
-                    colorFilter:
-                        ColorFilter.mode(AppColors.background, BlendMode.srcIn),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: SvgPicture.asset(
-                    AppIcons.cart,
-                    colorFilter:
-                        ColorFilter.mode(AppColors.background, BlendMode.srcIn),
-                  ),
-                )
-              ],
-              backgroundColor: AppColors.primary,
-              centerTitle: true,
-              leadingWidth: 86),
-        ),
-      ),
+      appBar: TopAppBar(),
       body: BlocBuilder<BottomNavCubit, BottomNav>(
         builder: (_, state) {
           switch (state) {
