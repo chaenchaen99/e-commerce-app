@@ -1,12 +1,13 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/theme/constant/app_colors.dart';
 import '../../../../../core/theme/constant/app_icons.dart';
+import '../../../../../core/theme/custom/custom_app_bar.dart';
+import '../../../../../core/theme/custom/custom_font_weight.dart';
 import '../../cubit/mall_type_cubit.dart';
+import '../widgets/svg_icon_button.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -16,62 +17,65 @@ class HomeAppBar extends StatelessWidget {
     return BlocBuilder<MallTypeCubit, MallType>(builder: (_, state) {
       return AnimatedContainer(
         duration: Duration(milliseconds: 400),
-        color: (state.isMarket) ? AppColors.primary : AppColors.background,
+        color: state.theme.backgroundColor,
         padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0),
         child: AppBar(
-            // backgroundColor: Colors.amber,
-            leading: Padding(
-              padding: EdgeInsets.all(8),
-              child: SvgPicture.asset(
-                AppIcons.mainLogo,
-                colorFilter: ColorFilter.mode(
-                  state.isMarket ? AppColors.onPrimary : AppColors.primary,
-                  BlendMode.srcIn,
-                ),
-              ),
+            leading: SvgIconButton(
+              icon: AppIcons.mainLogo,
+              padding: 8,
+              color: state.theme.logoColor,
             ),
-            title: DefaultTabController(
-              initialIndex: state.index,
-              length: MallType.values.length,
-              child: TabBar(
-                onTap: (index) =>
-                    context.read<MallTypeCubit>().changeIndex(index),
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.black,
-                overlayColor: WidgetStateProperty.all(Colors.transparent),
-                tabs: List.generate(
-                  MallType.values.length,
-                  (index) => Tab(
-                    text: MallType.values[index].toName,
+            title: AnimatedContainer(
+              duration: Duration(milliseconds: 400),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(CustomAppBarTheme.tabBarRadius),
+                ),
+                color: state.theme.containerColor,
+              ),
+              child: SizedBox(
+                height: 28,
+                width: 144,
+                child: DefaultTabController(
+                  initialIndex: state.index,
+                  length: MallType.values.length,
+                  child: TabBar(
+                    onTap: (index) =>
+                        context.read<MallTypeCubit>().changeIndex(index),
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    labelPadding: EdgeInsets.only(left: 12, right: 12, top: 4),
+                    labelColor: state.theme.labelColor,
+                    dividerColor: Colors.transparent,
+                    labelStyle: Theme.of(context).textTheme.labelLarge.bold,
+                    unselectedLabelColor: state.theme.unselectedLabelColor,
+                    unselectedLabelStyle:
+                        Theme.of(context).textTheme.labelLarge,
+                    overlayColor: WidgetStateProperty.all(Colors.transparent),
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(CustomAppBarTheme.tabBarRadius),
+                      ),
+                      color: state.theme.indicatorColor,
+                    ),
+                    tabs: List.generate(
+                      MallType.values.length,
+                      (index) => Tab(
+                        text: MallType.values[index].toName,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
             actions: [
-              Padding(
-                padding: EdgeInsets.all(4.0),
-                child: SvgPicture.asset(
-                  AppIcons.location,
-                  colorFilter: ColorFilter.mode(
-                    state.isMarket
-                        ? AppColors.background
-                        : AppColors.contentPrimary,
-                    BlendMode.srcIn,
-                  ),
-                ),
+              SvgIconButton(
+                icon: AppIcons.location,
+                color: state.theme.iconColor,
               ),
-              Padding(
-                padding: EdgeInsets.all(4.0),
-                child: SvgPicture.asset(
-                  AppIcons.cart,
-                  colorFilter: ColorFilter.mode(
-                    state.isMarket
-                        ? AppColors.background
-                        : AppColors.contentPrimary,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              )
+              SvgIconButton(
+                icon: AppIcons.cart,
+                color: state.theme.iconColor,
+              ),
             ],
             backgroundColor: Colors.transparent,
             centerTitle: true,
