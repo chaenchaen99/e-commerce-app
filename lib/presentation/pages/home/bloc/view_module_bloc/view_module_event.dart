@@ -6,7 +6,12 @@ abstract class ViewModuleEvent {
 
 class ViewModuleInitialized implements ViewModuleEvent {
   final int tabId;
-  const ViewModuleInitialized(this.tabId);
+  final bool isRefresh;
+
+  const ViewModuleInitialized({
+    required this.tabId,
+    this.isRefresh = false,
+  });
 }
 
 class ViewModuleFetched extends ViewModuleEvent {
