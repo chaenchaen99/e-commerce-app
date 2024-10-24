@@ -32,7 +32,7 @@ void main() {
   test('의존성 주입 성공', () => expect(displayUsecase, isNotNull));
 
   test('메뉴 리스트 불러오기 성공', () async {
-    final result = Result.Success([Menu(tabId: -1, title: '메뉴테스트')]);
+    final result = Result.success([Menu(tabId: -1, title: '메뉴테스트')]);
     final usecase = MockGetMenusUsecase();
 
     when(() => usecase.mallType).thenReturn(MallType.market);
