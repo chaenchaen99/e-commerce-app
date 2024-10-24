@@ -1,18 +1,17 @@
 import '../../../../core/utils/error/error_response.dart';
-import '../../../../presentation/pages/main/cubit/mall_type_cubit.dart';
 import '../../../model/common/result.dart';
-import '../../../model/display/menu/menu.model.dart';
+import '../../../model/display/view_module/view_module.model.dart';
 import '../../../repository/display.repository.dart';
 import '../../base/remote.usecase.dart';
 
-class GetMenusUsecase extends RemoteUsecase<DisplayRepository> {
-  final MallType mallType;
+class GetViewModulesUsecase extends RemoteUsecase<DisplayRepository> {
+  final int tabId;
 
-  GetMenusUsecase(this.mallType);
+  GetViewModulesUsecase({required this.tabId});
 
   @override
-  Future<Result<List<Menu>>> call(DisplayRepository repository) async {
-    final result = await repository.getMenusByMallType(mallType: mallType);
+  Future<Result<List<ViewModule>>> call(DisplayRepository repository) async {
+    final result = await repository.getViewModuleByTabId(tabId: tabId);
 
     return (result.status == 'SUCCESS')
         ? Result.success(result.data ?? [])
