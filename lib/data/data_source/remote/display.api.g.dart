@@ -65,9 +65,11 @@ class _DisplayApi implements DisplayApi {
 
   @override
   Future<ResponseWrapper<List<ViewModuleDto>>> getViewModulesByTabId(
-      int tabId) async {
+    int tabId,
+    int page,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options =
