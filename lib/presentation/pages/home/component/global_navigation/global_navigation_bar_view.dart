@@ -40,30 +40,10 @@ class ViewModuleList extends StatelessWidget {
         case Status.loading:
           return Center(child: CircularProgressIndicator());
         case Status.success:
-          return Column(
-            children: [
-              Container(
-                color: Colors.deepOrangeAccent,
-                height: 50,
-                child: Center(
-                  child: Text('${state.tabId}'),
-                ),
-              ),
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (_, index) {
-                    return SizedBox(
-                      height: 200,
-                      child: Center(
-                        child: Text('${state.viewModules[index].type}'),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (_, index) => Divider(thickness: 4),
-                  itemCount: state.viewModules.length,
-                ),
-              ),
-            ],
+          return ListView.separated(
+            itemBuilder: (_, index) => state.viewModules[index],
+            separatorBuilder: (_, index) => Divider(thickness: 4),
+            itemCount: state.viewModules.length,
           );
         case Status.error:
           return Center(

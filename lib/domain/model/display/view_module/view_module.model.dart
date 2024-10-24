@@ -12,6 +12,6 @@ class ViewModule with _$ViewModule {
     required String imageUrl,
   }) = _ViewModule;
 
-  factory ViewModule.fromJson(Map<String, dynamic> json) =>
+  factory ViewModule.fromJson(Map<String, Object?> json) =>
       _$ViewModuleFromJson(json);
 }

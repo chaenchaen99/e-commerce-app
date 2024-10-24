@@ -4,8 +4,8 @@ part of 'view_module_bloc.dart';
 class ViewModuleState with _$ViewModuleState {
   const factory ViewModuleState({
     @Default(Status.initial) Status status,
-    @Default(-1) int tabId,
-    @Default(<ViewModule>[]) List<ViewModule> viewModules,
     @Default(ErrorResponse()) ErrorResponse error,
+    @Default(-1) int tabId,
+    @Default(<Widget>[]) List<Widget> viewModules,
   }) = _ViewModuleState;
 }

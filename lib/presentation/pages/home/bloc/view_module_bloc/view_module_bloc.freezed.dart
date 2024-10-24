@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ViewModuleState {
   Status get status => throw _privateConstructorUsedError;
-  int get tabId => throw _privateConstructorUsedError;
-  List<ViewModule> get viewModules => throw _privateConstructorUsedError;
   ErrorResponse get error => throw _privateConstructorUsedError;
+  int get tabId => throw _privateConstructorUsedError;
+  List<Widget> get viewModules => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ViewModuleStateCopyWith<ViewModuleState> get copyWith =>
@@ -34,9 +34,9 @@ abstract class $ViewModuleStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Status status,
+      ErrorResponse error,
       int tabId,
-      List<ViewModule> viewModules,
-      ErrorResponse error});
+      List<Widget> viewModules});
 }
 
 /// @nodoc
@@ -53,15 +53,19 @@ class _$ViewModuleStateCopyWithImpl<$Res, $Val extends ViewModuleState>
   @override
   $Res call({
     Object? status = null,
+    Object? error = null,
     Object? tabId = null,
     Object? viewModules = null,
-    Object? error = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorResponse,
       tabId: null == tabId
           ? _value.tabId
           : tabId // ignore: cast_nullable_to_non_nullable
@@ -69,11 +73,7 @@ class _$ViewModuleStateCopyWithImpl<$Res, $Val extends ViewModuleState>
       viewModules: null == viewModules
           ? _value.viewModules
           : viewModules // ignore: cast_nullable_to_non_nullable
-              as List<ViewModule>,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorResponse,
+              as List<Widget>,
     ) as $Val);
   }
 }
@@ -88,9 +88,9 @@ abstract class _$$ViewModuleStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status status,
+      ErrorResponse error,
       int tabId,
-      List<ViewModule> viewModules,
-      ErrorResponse error});
+      List<Widget> viewModules});
 }
 
 /// @nodoc
@@ -105,15 +105,19 @@ class __$$ViewModuleStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? error = null,
     Object? tabId = null,
     Object? viewModules = null,
-    Object? error = null,
   }) {
     return _then(_$ViewModuleStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorResponse,
       tabId: null == tabId
           ? _value.tabId
           : tabId // ignore: cast_nullable_to_non_nullable
@@ -121,11 +125,7 @@ class __$$ViewModuleStateImplCopyWithImpl<$Res>
       viewModules: null == viewModules
           ? _value._viewModules
           : viewModules // ignore: cast_nullable_to_non_nullable
-              as List<ViewModule>,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as ErrorResponse,
+              as List<Widget>,
     ));
   }
 }
@@ -135,9 +135,9 @@ class __$$ViewModuleStateImplCopyWithImpl<$Res>
 class _$ViewModuleStateImpl implements _ViewModuleState {
   const _$ViewModuleStateImpl(
       {this.status = Status.initial,
+      this.error = const ErrorResponse(),
       this.tabId = -1,
-      final List<ViewModule> viewModules = const <ViewModule>[],
-      this.error = const ErrorResponse()})
+      final List<Widget> viewModules = const <Widget>[]})
       : _viewModules = viewModules;
 
   @override
@@ -145,23 +145,22 @@ class _$ViewModuleStateImpl implements _ViewModuleState {
   final Status status;
   @override
   @JsonKey()
-  final int tabId;
-  final List<ViewModule> _viewModules;
+  final ErrorResponse error;
   @override
   @JsonKey()
-  List<ViewModule> get viewModules {
+  final int tabId;
+  final List<Widget> _viewModules;
+  @override
+  @JsonKey()
+  List<Widget> get viewModules {
     if (_viewModules is EqualUnmodifiableListView) return _viewModules;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_viewModules);
   }
 
   @override
-  @JsonKey()
-  final ErrorResponse error;
-
-  @override
   String toString() {
-    return 'ViewModuleState(status: $status, tabId: $tabId, viewModules: $viewModules, error: $error)';
+    return 'ViewModuleState(status: $status, error: $error, tabId: $tabId, viewModules: $viewModules)';
   }
 
   @override
@@ -170,15 +169,15 @@ class _$ViewModuleStateImpl implements _ViewModuleState {
         (other.runtimeType == runtimeType &&
             other is _$ViewModuleStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.error, error) || other.error == error) &&
             (identical(other.tabId, tabId) || other.tabId == tabId) &&
             const DeepCollectionEquality()
-                .equals(other._viewModules, _viewModules) &&
-            (identical(other.error, error) || other.error == error));
+                .equals(other._viewModules, _viewModules));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, tabId,
-      const DeepCollectionEquality().hash(_viewModules), error);
+  int get hashCode => Object.hash(runtimeType, status, error, tabId,
+      const DeepCollectionEquality().hash(_viewModules));
 
   @JsonKey(ignore: true)
   @override
@@ -191,18 +190,18 @@ class _$ViewModuleStateImpl implements _ViewModuleState {
 abstract class _ViewModuleState implements ViewModuleState {
   const factory _ViewModuleState(
       {final Status status,
+      final ErrorResponse error,
       final int tabId,
-      final List<ViewModule> viewModules,
-      final ErrorResponse error}) = _$ViewModuleStateImpl;
+      final List<Widget> viewModules}) = _$ViewModuleStateImpl;
 
   @override
   Status get status;
   @override
+  ErrorResponse get error;
+  @override
   int get tabId;
   @override
-  List<ViewModule> get viewModules;
-  @override
-  ErrorResponse get error;
+  List<Widget> get viewModules;
   @override
   @JsonKey(ignore: true)
   _$$ViewModuleStateImplCopyWith<_$ViewModuleStateImpl> get copyWith =>
