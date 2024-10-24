@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'core/theme/theme_data.dart';
+import 'dependency_injection.dart';
 import 'presentation/routes/routes.dart';
 
-void main() {
+void main() async {
+  configureDependencies();
+
   runApp(const MyApp());
 }
 

@@ -109,27 +109,25 @@ class CustomTheme {
   );
 
   /// color_scheme
-  static final colorScheme = ColorScheme(
-    brightness: Brightness.light,
-    primary: AppColors.primary,
-    onPrimary: AppColors.onPrimary,
-    primaryContainer: AppColors.primaryContainer,
-    secondary: AppColors.secondary,
-    onSecondary: AppColors.onSecondary,
-    error: AppColors.error,
-    onError: AppColors.onError,
-    background: AppColors.background,
-    onBackground: AppColors.onBackground,
-    surface: AppColors.surface,
-    onSurface: AppColors.onSurface,
-    surfaceVariant: AppColors.surfaceVariant,
-    onSurfaceVariant: AppColors.onSurfaceVariant,
-    outline: AppColors.outline,
-    shadow: AppColors.shadow,
-    inverseSurface: AppColors.inverseSurface,
-    onInverseSurface: AppColors.onInverseSurface,
-    inversePrimary: AppColors.inversePrimary,
-  );
+  // static final colorScheme = ColorScheme(
+  //   brightness: Brightness.light,
+  //   primary: AppColors.primary,
+  //   onPrimary: AppColors.onPrimary,
+  //   primaryContainer: AppColors.primaryContainer,
+  //   secondary: AppColors.secondary,
+  //   onSecondary: AppColors.onSecondary,
+  //   error: AppColors.error,
+  //   onError: AppColors.onError,
+  //   surface: AppColors.surface,
+  //   onSurface: AppColors.onSurface,
+  //   surfaceContainerHighest: AppColors.surfaceVariant,
+  //   onSurfaceVariant: AppColors.onSurfaceVariant,
+  //   outline: AppColors.outline,
+  //   shadow: AppColors.shadow,
+  //   inverseSurface: AppColors.inverseSurface,
+  //   onInverseSurface: AppColors.onInverseSurface,
+  //   inversePrimary: AppColors.inversePrimary,
+  // );
 }
 
 extension ColorSchemeEx on ColorScheme {
