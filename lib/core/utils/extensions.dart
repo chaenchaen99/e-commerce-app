@@ -1,5 +1,8 @@
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
+import '../theme/constant/app_colors.dart';
+import '../theme/custom/custom_font_weight.dart';
 import 'constant.dart';
 
 extension StatusX on Status {
@@ -31,5 +34,32 @@ extension IntExtension on int {
 
   String toReview() {
     return this > 9999 ? '9999+' : toString();
+  }
+}
+
+extension TextStyleExtension on TextStyle {
+  TextStyle? titleCopyWith() {
+    return copyWith(color: AppColors.contentPrimary).regular;
+  }
+
+  TextStyle? discountRateCopyWith() {
+    return copyWith(color: AppColors.secondary).bold;
+  }
+
+  TextStyle? priceCopyWith() {
+    return copyWith(color: AppColors.contentPrimary).bold;
+  }
+
+  TextStyle? originalPriceCopyWith() {
+    return copyWith(
+      color: AppColors.contentFourth,
+      decoration: TextDecoration.lineThrough,
+    ).regular;
+  }
+
+  TextStyle? reviewCountCopyWith() {
+    return copyWith(
+      color: AppColors.contentTertiary,
+    ).regular;
   }
 }
