@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 import 'constant.dart';
 
 extension StatusX on Status {
@@ -10,7 +12,7 @@ extension StatusX on Status {
   bool get isError => this == Status.error;
 }
 
-extension StringEx on String {
+extension StringExtension on String {
   String toSnakeCase() {
     RegExp exp = RegExp(r'(?<=[a-z])[A-Z]');
 
@@ -18,4 +20,16 @@ extension StringEx on String {
   }
 
   bool get isSuccess => this == 'SUCCESS';
+}
+
+extension IntExtension on int {
+  String toWon() {
+    //3자리마다 , 찍도록
+    final priceFormat = NumberFormat('###,###,###,###원');
+    return priceFormat.format(this);
+  }
+
+  String toReview() {
+    return this > 9999 ? '9999+' : toString();
+  }
 }

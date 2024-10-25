@@ -1,14 +1,17 @@
 import 'package:flutter/widgets.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/utils/extensions.dart';
 import '../../../../../../domain/model/display/view_module/view_module.model.dart';
 import '../carousel.view_module.dart';
+import '../scroll.view_module.dart';
 import '../view_module_A.dart';
 import '../view_module_B.dart';
 import '../view_module_C.dart';
 import '../view_module_D.dart';
 import '../view_module_E.dart';
 import '../view_module_NONE.dart';
+import 'banner.view_module.dart';
 import 'view_module_widget.dart';
 
 enum Modules {
@@ -18,6 +21,8 @@ enum Modules {
   viewModuleD,
   viewModuleE,
   carouselViewModule,
+  bannerviewModule,
+  scrollViewModule,
 }
 
 class ViewModuleFactory {
@@ -49,6 +54,10 @@ extension ModulesExtension on Modules {
         return ViewModuleE();
       case Modules.carouselViewModule:
         return CarouselViewModule(info: info);
+      case Modules.bannerviewModule:
+        return BannerViewModule(info: info);
+      case Modules.scrollViewModule:
+        return ScrollViewModule(info: info);
     }
   }
 }
