@@ -24,6 +24,7 @@ mixin _$ViewModule {
   String get title => throw _privateConstructorUsedError;
   String get subTitle => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  int get time => throw _privateConstructorUsedError;
   List<ProductInfo> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $ViewModuleCopyWith<$Res> {
       String title,
       String subTitle,
       String imageUrl,
+      int time,
       List<ProductInfo> products});
 }
 
@@ -63,6 +65,7 @@ class _$ViewModuleCopyWithImpl<$Res, $Val extends ViewModule>
     Object? title = null,
     Object? subTitle = null,
     Object? imageUrl = null,
+    Object? time = null,
     Object? products = null,
   }) {
     return _then(_value.copyWith(
@@ -82,6 +85,10 @@ class _$ViewModuleCopyWithImpl<$Res, $Val extends ViewModule>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as int,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -103,6 +110,7 @@ abstract class _$$ViewModuleImplCopyWith<$Res>
       String title,
       String subTitle,
       String imageUrl,
+      int time,
       List<ProductInfo> products});
 }
 
@@ -121,6 +129,7 @@ class __$$ViewModuleImplCopyWithImpl<$Res>
     Object? title = null,
     Object? subTitle = null,
     Object? imageUrl = null,
+    Object? time = null,
     Object? products = null,
   }) {
     return _then(_$ViewModuleImpl(
@@ -140,6 +149,10 @@ class __$$ViewModuleImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      time: null == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as int,
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -156,6 +169,7 @@ class _$ViewModuleImpl implements _ViewModule {
       required this.title,
       required this.subTitle,
       required this.imageUrl,
+      required this.time,
       required final List<ProductInfo> products})
       : _products = products;
 
@@ -170,6 +184,8 @@ class _$ViewModuleImpl implements _ViewModule {
   final String subTitle;
   @override
   final String imageUrl;
+  @override
+  final int time;
   final List<ProductInfo> _products;
   @override
   List<ProductInfo> get products {
@@ -180,7 +196,7 @@ class _$ViewModuleImpl implements _ViewModule {
 
   @override
   String toString() {
-    return 'ViewModule(type: $type, title: $title, subTitle: $subTitle, imageUrl: $imageUrl, products: $products)';
+    return 'ViewModule(type: $type, title: $title, subTitle: $subTitle, imageUrl: $imageUrl, time: $time, products: $products)';
   }
 
   @override
@@ -194,13 +210,14 @@ class _$ViewModuleImpl implements _ViewModule {
                 other.subTitle == subTitle) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
+            (identical(other.time, time) || other.time == time) &&
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, type, title, subTitle, imageUrl,
-      const DeepCollectionEquality().hash(_products));
+      time, const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -222,6 +239,7 @@ abstract class _ViewModule implements ViewModule {
       required final String title,
       required final String subTitle,
       required final String imageUrl,
+      required final int time,
       required final List<ProductInfo> products}) = _$ViewModuleImpl;
 
   factory _ViewModule.fromJson(Map<String, dynamic> json) =
@@ -235,6 +253,8 @@ abstract class _ViewModule implements ViewModule {
   String get subTitle;
   @override
   String get imageUrl;
+  @override
+  int get time;
   @override
   List<ProductInfo> get products;
   @override

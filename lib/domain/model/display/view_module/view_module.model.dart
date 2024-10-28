@@ -12,6 +12,7 @@ class ViewModule with _$ViewModule {
     required String title,
     required String subTitle,
     required String imageUrl,
+    required int time,
     required List<ProductInfo> products,
   }) = _ViewModule;
 

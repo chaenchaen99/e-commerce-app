@@ -1,10 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
-
 import '../../../../../../core/utils/extensions.dart';
 import '../../../../../../domain/model/display/view_module/view_module.model.dart';
 import '../carousel.view_module.dart';
 import '../scroll.view_module.dart';
+import '../special_price.view_module.dart';
 import '../view_module_A.dart';
 import '../view_module_B.dart';
 import '../view_module_C.dart';
@@ -23,6 +22,7 @@ enum Modules {
   carouselViewModule,
   bannerviewModule,
   scrollViewModule,
+  specialPriceViewModule,
 }
 
 class ViewModuleFactory {
@@ -58,6 +58,8 @@ extension ModulesExtension on Modules {
         return BannerViewModule(info: info);
       case Modules.scrollViewModule:
         return ScrollViewModule(info: info);
+      case Modules.specialPriceViewModule:
+        return SpecialPriceViewModule(info: info);
     }
   }
 }
