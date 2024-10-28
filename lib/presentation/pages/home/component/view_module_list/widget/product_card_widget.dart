@@ -69,10 +69,9 @@ class ProductCardWidget extends StatelessWidget {
           '${productInfo.originalPrice.toString()}원',
           style: priceStyle?.originalPriceCopyWith(),
         ),
-        SizedBox(height: 8),
         if (needShowReviewCount)
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 4.0),
             child: Row(
               children: [
                 SvgPicture.asset(
