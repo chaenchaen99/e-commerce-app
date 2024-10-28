@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import '../../../../../../core/utils/extensions.dart';
 import '../../../../../../domain/model/display/view_module/view_module.model.dart';
+import '../brand_product.view_module.dart';
 import '../carousel.view_module.dart';
 import '../category_product.view_module.dart';
 import '../scroll.view_module.dart';
@@ -20,6 +21,7 @@ enum Modules {
   scrollViewModule,
   specialPriceViewModule,
   categoryProductViewModule,
+  brandProductViewModule,
 }
 
 class ViewModuleFactory {
@@ -59,6 +61,8 @@ extension ModulesExtension on Modules {
         return SpecialPriceViewModule(info: info);
       case Modules.categoryProductViewModule:
         return CategoryProductViewModule(info: info);
+      case Modules.brandProductViewModule:
+        return BrandProductViewModule(info: info);
     }
   }
 }
