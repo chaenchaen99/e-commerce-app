@@ -33,9 +33,9 @@ class DisplayMockData {
       'carousel_view_module',
       'scroll_view_module',
       'special_price_view_module',
-      'banner_view_module',
+      // 'banner_view_module',
       'category_product_view_module',
-      'brand_product_view_module',
+      // 'brand_product_view_module',
     ];
 
     var products = List.filled(6, productInfo);

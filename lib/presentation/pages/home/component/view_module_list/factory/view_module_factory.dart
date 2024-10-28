@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../../../../../../core/utils/extensions.dart';
 import '../../../../../../domain/model/display/view_module/view_module.model.dart';
 import '../carousel.view_module.dart';
+import '../category_product.view_module.dart';
 import '../scroll.view_module.dart';
 import '../special_price.view_module.dart';
 import '../view_module_A.dart';
@@ -14,15 +15,11 @@ import 'banner.view_module.dart';
 import 'view_module_widget.dart';
 
 enum Modules {
-  viewModuleA,
-  viewModuleB,
-  viewModuleC,
-  viewModuleD,
-  viewModuleE,
   carouselViewModule,
   bannerviewModule,
   scrollViewModule,
   specialPriceViewModule,
+  categoryProductViewModule,
 }
 
 class ViewModuleFactory {
@@ -42,16 +39,16 @@ class ViewModuleFactory {
 extension ModulesExtension on Modules {
   ViewModuleWidget toWidget(ViewModule info) {
     switch (this) {
-      case Modules.viewModuleA:
-        return ViewModuleA();
-      case Modules.viewModuleB:
-        return ViewModuleB();
-      case Modules.viewModuleC:
-        return ViewModuleC();
-      case Modules.viewModuleD:
-        return ViewModuleD();
-      case Modules.viewModuleE:
-        return ViewModuleE();
+      // case Modules.viewModuleA:
+      //   return ViewModuleA();
+      // case Modules.viewModuleB:
+      //   return ViewModuleB();
+      // case Modules.viewModuleC:
+      //   return ViewModuleC();
+      // case Modules.viewModuleD:
+      //   return ViewModuleD();
+      // case Modules.viewModuleE:
+      //   return ViewModuleE();
       case Modules.carouselViewModule:
         return CarouselViewModule(info: info);
       case Modules.bannerviewModule:
@@ -60,6 +57,8 @@ extension ModulesExtension on Modules {
         return ScrollViewModule(info: info);
       case Modules.specialPriceViewModule:
         return SpecialPriceViewModule(info: info);
+      case Modules.categoryProductViewModule:
+        return CategoryProductViewModule(info: info);
     }
   }
 }
