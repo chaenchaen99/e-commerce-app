@@ -41,7 +41,9 @@ class ProductCardWidget extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            AddCartButton(),
+            AddCartButton(
+              productInfo: productInfo,
+            ),
           ],
         ),
         SizedBox(height: 9),

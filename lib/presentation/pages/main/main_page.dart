@@ -4,10 +4,12 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/constant/app_colors.dart';
 import '../../../core/theme/constant/app_icons.dart';
+import 'utils/bottom_sheet/cart_bottom_sheet.dart';
 import '../category/category_page.dart';
 import '../home/home_page.dart';
 import '../search/search_page.dart';
 import '../user/user_page.dart';
+import 'bloc/cart_bloc/cart_bloc.dart';
 import 'component/top_app_bar/top_app_bar.dart';
 import 'bloc/cubit/bottom_nav_cubit.dart';
 import 'bloc/cubit/mall_type_cubit.dart';
@@ -31,19 +33,27 @@ class MainPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TopAppBar(),
-      body: BlocBuilder<BottomNavCubit, BottomNav>(
-        builder: (_, state) {
-          switch (state) {
-            case BottomNav.home:
-              return HomePage();
-            case BottomNav.category:
-              return CategoryPage();
-            case BottomNav.search:
-              return SearchPage();
-            case BottomNav.user:
-              return UserPage();
-          }
+      body: BlocListener<CartBloc, CartState>(
+        listener: (context, state) {
+          cartBottomSheet(context)
+              .whenComplete(() => context.read<CartBloc>().add(CartClosed()));
         },
+        listenWhen: (previous, current) =>
+            previous.status.isClose && current.status.isOpen,
+        child: BlocBuilder<BottomNavCubit, BottomNav>(
+          builder: (_, state) {
+            switch (state) {
+              case BottomNav.home:
+                return HomePage();
+              case BottomNav.category:
+                return CategoryPage();
+              case BottomNav.search:
+                return SearchPage();
+              case BottomNav.user:
+                return UserPage();
+            }
+          },
+        ),
       ),
       bottomNavigationBar:
           BlocBuilder<BottomNavCubit, BottomNav>(builder: (_, state) {

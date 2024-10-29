@@ -18,6 +18,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<CartInitialized>(_onCartInitialized);
     on<CartOpened>(_onCartOpened);
     on<CartClosed>(_onCartClosed);
+    on<CartQuantityDecreased>(_onCartQuantityDecreased);
+    on<CartQuantityIncreased>(_onCartQuantityIncreased);
   }
 
   void _onCartInitialized(CartInitialized event, Emitter<CartState> emit) {}
@@ -43,15 +45,50 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   void _onCartClosed(CartClosed event, Emitter<CartState> emit) {
-    if (state.status.isClose) return;
-
     try {
+      if (state.status.isClose) return;
       emit(state.copyWith(status: CartStatus.close));
     } catch (error) {
       CustomLogger.logger.e(error);
       emit(state.copyWith(
           status: CartStatus.error, error: CommonException.setError(error)));
     }
+  }
+
+  void _onCartQuantityIncreased(
+      CartQuantityIncreased event, Emitter<CartState> emit) {
+    try {
+      final quantity = state.quantity + 1;
+      final totalPrice = state.productInfo.price * quantity;
+
+      emit(state.copyWith(totalPrice: totalPrice, quantity: quantity));
+    } catch (error) {
+      CustomLogger.logger.e(error);
+      emit(state.copyWith(
+          status: CartStatus.error, error: CommonException.setError(error)));
+    }
+  }
+
+  void _onCartQuantityDecreased(
+      CartQuantityDecreased event, Emitter<CartState> emit) {
+    try {
+      final quantity = state.quantity - 1;
+      if (quantity <= 0) return;
+
+      final totalPrice = state.productInfo.price * quantity;
+      emit(state.copyWith(totalPrice: totalPrice, quantity: quantity));
+    } catch (error) {
+      CustomLogger.logger.e(error);
+      emit(state.copyWith(
+          status: CartStatus.error, error: CommonException.setError(error)));
+    }
+  }
+
+  @override
+  void onChange(Change<CartState> change) {
+    super.onChange(change);
+    print(
+        '[test] change: ${change.currentState.status} --> ${change.nextState.status}');
   }
 }
 

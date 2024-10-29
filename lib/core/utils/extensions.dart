@@ -54,6 +54,7 @@ extension TextStyleExtension on TextStyle {
     return copyWith(
       color: AppColors.contentFourth,
       decoration: TextDecoration.lineThrough,
+      decorationColor: AppColors.contentFourth,
     ).regular;
   }
 
