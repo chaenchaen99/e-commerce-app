@@ -7,7 +7,7 @@ import 'package:e_commerce_app/data/mapper/display.mapper.dart';
 import 'package:e_commerce_app/data/repository_impl/display.repository_impl.dart';
 import 'package:e_commerce_app/domain/model/display/menu/menu.model.dart';
 import 'package:e_commerce_app/domain/repository/display.repository.dart';
-import 'package:e_commerce_app/presentation/pages/main/cubit/mall_type_cubit.dart';
+import 'package:e_commerce_app/presentation/pages/main/bloc/cubit/mall_type_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

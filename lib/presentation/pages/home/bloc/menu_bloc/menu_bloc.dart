@@ -10,7 +10,7 @@ import '../../../../../domain/model/common/result.dart';
 import '../../../../../domain/model/display/menu/menu.model.dart';
 import '../../../../../domain/usecase/display/display.usecase.dart';
 import '../../../../../domain/usecase/display/menu/get_menus.usecase.dart';
-import '../../../main/cubit/mall_type_cubit.dart';
+import '../../../main/bloc/cubit/mall_type_cubit.dart';
 
 part 'menu_event.dart';
 part 'menu_state.dart';

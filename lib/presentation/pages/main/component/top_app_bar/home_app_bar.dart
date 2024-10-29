@@ -6,7 +6,7 @@ import '../../../../../core/theme/constant/app_colors.dart';
 import '../../../../../core/theme/constant/app_icons.dart';
 import '../../../../../core/theme/custom/custom_app_bar.dart';
 import '../../../../../core/theme/custom/custom_font_weight.dart';
-import '../../cubit/mall_type_cubit.dart';
+import '../../bloc/cubit/mall_type_cubit.dart';
 import '../widgets/svg_icon_button.dart';
 
 class HomeAppBar extends StatelessWidget {

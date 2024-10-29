@@ -9,8 +9,8 @@ import '../home/home_page.dart';
 import '../search/search_page.dart';
 import '../user/user_page.dart';
 import 'component/top_app_bar/top_app_bar.dart';
-import 'cubit/bottom_nav_cubit.dart';
-import 'cubit/mall_type_cubit.dart';
+import 'bloc/cubit/bottom_nav_cubit.dart';
+import 'bloc/cubit/mall_type_cubit.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

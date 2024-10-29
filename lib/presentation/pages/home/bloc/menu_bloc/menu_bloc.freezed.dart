@@ -52,7 +52,7 @@ class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
   @override
   $Res call({
     Object? status = null,
-    Object? mallType = null,
+    Object? mallType = freezed,
     Object? menus = null,
     Object? error = null,
   }) {
@@ -61,7 +61,7 @@ class _$MenuStateCopyWithImpl<$Res, $Val extends MenuState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      mallType: null == mallType
+      mallType: freezed == mallType
           ? _value.mallType
           : mallType // ignore: cast_nullable_to_non_nullable
               as MallType,
@@ -104,7 +104,7 @@ class __$$MenuStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? mallType = null,
+    Object? mallType = freezed,
     Object? menus = null,
     Object? error = null,
   }) {
@@ -113,7 +113,7 @@ class __$$MenuStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
-      mallType: null == mallType
+      mallType: freezed == mallType
           ? _value.mallType
           : mallType // ignore: cast_nullable_to_non_nullable
               as MallType,
@@ -169,15 +169,18 @@ class _$MenuStateImpl implements _MenuState {
         (other.runtimeType == runtimeType &&
             other is _$MenuStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.mallType, mallType) ||
-                other.mallType == mallType) &&
+            const DeepCollectionEquality().equals(other.mallType, mallType) &&
             const DeepCollectionEquality().equals(other._menus, _menus) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, mallType,
-      const DeepCollectionEquality().hash(_menus), error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(mallType),
+      const DeepCollectionEquality().hash(_menus),
+      error);
 
   @JsonKey(ignore: true)
   @override
