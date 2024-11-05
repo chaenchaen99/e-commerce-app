@@ -1,9 +1,11 @@
 import 'package:injectable/injectable.dart';
 
+import '../../domain/model/display/cart/cart.model.dart';
 import '../../domain/model/display/menu/menu.model.dart';
 import '../../domain/model/display/view_module/view_module.model.dart';
 import '../../domain/repository/display.repository.dart';
-import '../../presentation/pages/main/cubit/mall_type_cubit.dart';
+import '../../presentation/pages/main/bloc/cubit/mall_type_cubit.dart';
+import '../data_source/local_storage/display.dao.dart';
 import '../data_source/remote/display.api.dart';
 import '../dto/common/response_wrapper.dart';
 import '../mapper/common.mapper.dart';
@@ -12,8 +14,12 @@ import '../mapper/display.mapper.dart';
 @Singleton(as: DisplayRepository)
 class DisplayRepositoryImpl implements DisplayRepository {
   final DisplayApi _displayApi;
+  final DisplayDao _displayDao;
 
-  DisplayRepositoryImpl(this._displayApi);
+  DisplayRepositoryImpl(
+    this._displayApi,
+    this._displayDao,
+  );
 
   @override
   Future<ResponseWrapper<List<Menu>>> getMenusByMallType({
@@ -37,5 +43,52 @@ class DisplayRepositoryImpl implements DisplayRepository {
       response.data?.map((viewModuleDto) => viewModuleDto.toModel()).toList() ??
           [],
     );
+  }
+
+  @override
+  Future<ResponseWrapper<List<Cart>>> getCartList() async {
+    final response = await _displayDao.getCartList();
+
+    return response.toModel<List<Cart>>(
+        response.data?.map((cartEntity) => cartEntity.toModel()).toList() ??
+            []);
+  }
+
+  @override
+  Future<ResponseWrapper<List<Cart>>> addCartList({required Cart cart}) async {
+    final response = await _displayDao.insertCart(cart.toEntity());
+
+    return response.toModel<List<Cart>>(
+        response.data?.map((cartEntity) => cartEntity.toModel()).toList() ??
+            []);
+  }
+
+  @override
+  Future<ResponseWrapper<List<Cart>>> changeCartQuantityByPrdId(
+      {required String productId, required int qty}) async {
+    final response = await _displayDao.changeQuantityCart(productId, qty);
+
+    return response.toModel<List<Cart>>(
+        response.data?.map((cartEntity) => cartEntity.toModel()).toList() ??
+            []);
+  }
+
+  @override
+  Future<ResponseWrapper<List<Cart>>> clearCartList() async {
+    final response = await _displayDao.clearCart();
+
+    return response.toModel<List<Cart>>(
+        response.data?.map((cartEntity) => cartEntity.toModel()).toList() ??
+            []);
+  }
+
+  @override
+  Future<ResponseWrapper<List<Cart>>> deleteCartByProductId(
+      {required List<String> productIds}) async {
+    final response = await _displayDao.deleteCart(productIds);
+
+    return response.toModel<List<Cart>>(
+        response.data?.map((cartEntity) => cartEntity.toModel()).toList() ??
+            []);
   }
 }

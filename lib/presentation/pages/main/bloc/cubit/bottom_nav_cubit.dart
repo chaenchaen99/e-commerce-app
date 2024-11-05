@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/theme/constant/app_icons.dart';
+import '../../../../../core/theme/constant/app_icons.dart';
 
 enum BottomNav {
   home,

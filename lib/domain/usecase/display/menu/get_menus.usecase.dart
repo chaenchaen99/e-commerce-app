@@ -1,5 +1,5 @@
 import '../../../../core/utils/error/error_response.dart';
-import '../../../../presentation/pages/main/cubit/mall_type_cubit.dart';
+import '../../../../presentation/pages/main/bloc/cubit/mall_type_cubit.dart';
 import '../../../model/common/result.dart';
 import '../../../model/display/menu/menu.model.dart';
 import '../../../repository/display.repository.dart';

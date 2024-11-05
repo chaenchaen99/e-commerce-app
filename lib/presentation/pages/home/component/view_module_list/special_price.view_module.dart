@@ -96,7 +96,9 @@ class _SpeacialPriceProduct extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            AddCartButton(),
+            AddCartButton(
+              productInfo: productInfo,
+            ),
           ],
         ),
         SizedBox(height: 9),

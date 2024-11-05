@@ -6,7 +6,7 @@ import '../../../../../core/theme/constant/app_colors.dart';
 import '../../../../../core/theme/constant/app_icons.dart';
 import '../../../../../core/theme/custom/custom_app_bar.dart';
 import '../../../../../core/theme/custom/custom_font_weight.dart';
-import '../../cubit/mall_type_cubit.dart';
+import '../../bloc/cubit/mall_type_cubit.dart';
 import '../widgets/svg_icon_button.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -24,6 +24,7 @@ class HomeAppBar extends StatelessWidget {
               icon: AppIcons.mainLogo,
               padding: 8,
               color: state.theme.logoColor,
+              onPressed: null,
             ),
             title: AnimatedContainer(
               duration: Duration(milliseconds: 400),
@@ -71,10 +72,12 @@ class HomeAppBar extends StatelessWidget {
               SvgIconButton(
                 icon: AppIcons.location,
                 color: state.theme.iconColor,
+                onPressed: null,
               ),
               SvgIconButton(
                 icon: AppIcons.cart,
                 color: state.theme.iconColor,
+                onPressed: null,
               ),
             ],
             backgroundColor: Colors.transparent,
