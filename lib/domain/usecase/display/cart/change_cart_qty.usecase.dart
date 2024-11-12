@@ -13,7 +13,9 @@ class ChangeCartQtyUsecase extends LocalUsecase<DisplayRepository> {
   @override
   Future call(DisplayRepository repository) async {
     final result = await repository.changeCartQuantityByPrdId(
-        productId: productId, qty: qty);
+      productId: productId,
+      qty: qty,
+    );
 
     return result.status.isSuccess
         ? Result.success(result.data)

@@ -5,6 +5,7 @@ import '../../../../core/theme/constant/app_icons.dart';
 import '../../../../core/theme/custom/custom_font_weight.dart';
 import '../../../../core/theme/custom/custom_theme.dart';
 import '../../../../core/utils/extensions.dart';
+import '../../../../core/utils/widgets/counter_btn.dart';
 import '../../../../domain/model/display/cart/cart.model.dart';
 import '../../main/component/widgets/svg_icon_button.dart';
 import '../bloc/cart_list_bloc/cart_list_bloc.dart';
@@ -95,13 +96,13 @@ class CartProductCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        // CartCountBtn(
-                        //   quantity: cart.quantity,
-                        //   decreased: () =>
-                        //       bloc.add(CartListQtyDecreased(cart: cart)),
-                        //   increased: () =>
-                        //       bloc.add(CartListQtyIncreased(cart: cart)),
-                        // ),
+                        CounterBtn(
+                          quantity: cart.quantity,
+                          decreased: () =>
+                              bloc.add(CartListQtyDecreased(cart: cart)),
+                          increased: () =>
+                              bloc.add(CartListQtyIncreased(cart: cart)),
+                        ),
                       ],
                     ),
                   ],

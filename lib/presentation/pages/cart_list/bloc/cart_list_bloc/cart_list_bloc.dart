@@ -39,7 +39,8 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     emit(state.copyWith(status: Status.loading));
     try {
       final response = await _displayUsecase.execute<Result<List<Cart>?>>(
-          usecase: GetCartListUsecase());
+        usecase: GetCartListUsecase(),
+      );
       response.when(
         success: (data) {
           final List<Cart> cartList = [...data];

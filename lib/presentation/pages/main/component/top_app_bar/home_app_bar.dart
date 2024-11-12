@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/constant/app_colors.dart';
 import '../../../../../core/theme/constant/app_icons.dart';
 import '../../../../../core/theme/custom/custom_app_bar.dart';
 import '../../../../../core/theme/custom/custom_font_weight.dart';
+import '../../../../routes/routes_name.dart';
 import '../../bloc/cubit/mall_type_cubit.dart';
 import '../widgets/svg_icon_button.dart';
 
@@ -77,7 +79,7 @@ class HomeAppBar extends StatelessWidget {
               SvgIconButton(
                 icon: AppIcons.cart,
                 color: state.theme.iconColor,
-                onPressed: null,
+                onPressed: () => context.pushNamed(RoutesName.CART_LIST),
               ),
             ],
             backgroundColor: Colors.transparent,

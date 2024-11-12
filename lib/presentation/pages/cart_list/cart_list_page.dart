@@ -40,6 +40,7 @@ class CartListView extends StatelessWidget {
             color: colorScheme.contentPrimary,
             onPressed: () {
               if (context.canPop()) {
+                //뒤로가기가 가능하다면 pop실행
                 context.pop();
               }
             },
