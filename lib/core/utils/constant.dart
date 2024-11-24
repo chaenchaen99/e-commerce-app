@@ -9,4 +9,9 @@ class Constants {
 
 // enum MallType { market, beauty }
 
-enum Status { initial, loading, success, error }
+enum Status {
+  initial,
+  loading,
+  success,
+  error,
+}

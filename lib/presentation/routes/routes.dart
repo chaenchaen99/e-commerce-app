@@ -1,3 +1,4 @@
+import '../pages/cart_list/cart_list_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/main/main_page.dart';
 import '../pages/splash/splash_page.dart';
@@ -21,6 +22,11 @@ final GoRouter router = GoRouter(
       name: RoutesName.HOME,
       builder: (context, state) => HomePage(),
     ),
+    GoRoute(
+      path: '/cart-list',
+      name: RoutesName.CART_LIST,
+      builder: (context, state) => CartListPage(),
+    ),
   ],
-  initialLocation: "/splash",
+  initialLocation: '/splash',
 );
