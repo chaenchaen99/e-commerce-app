@@ -9,8 +9,8 @@ import '../../../core/utils/constant.dart';
 
 import '../main/component/widgets/svg_icon_button.dart';
 import 'bloc/cart_list_bloc/cart_list_bloc.dart';
-import 'component/cart_product_card.dart';
-import 'component/cart_total_price.dart';
+import 'component/cart_product_card/cart_product_card.dart';
+import 'component/cart_total_price/cart_total_price.dart';
 
 class CartListPage extends StatelessWidget {
   const CartListPage({super.key});
@@ -118,7 +118,7 @@ class CartListView extends StatelessWidget {
                   Divider(
                     height: 8,
                     thickness: 8,
-                    color: colorScheme.surface,
+                    color: colorScheme.contentPrimary.withOpacity(0.1),
                   ),
                   Column(
                     children: List.generate(
@@ -126,7 +126,7 @@ class CartListView extends StatelessWidget {
                       (index) => CartProductCard(cart: state.cartList[index]),
                     ),
                   ),
-                  CartTotalPrice(isEmpty: state.cartList.isEmpty),
+                  CartTotalPrice(),
                 ],
               );
           }

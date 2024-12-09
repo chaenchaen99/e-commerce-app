@@ -8,6 +8,7 @@ import '../../../../../core/theme/constant/app_icons.dart';
 import '../../../../../core/theme/custom/custom_app_bar.dart';
 import '../../../../../core/theme/custom/custom_font_weight.dart';
 import '../../../../routes/routes_name.dart';
+import '../../../cart_list/bloc/cart_list_bloc/cart_list_bloc.dart';
 import '../../bloc/cubit/mall_type_cubit.dart';
 import '../widgets/svg_icon_button.dart';
 
@@ -76,10 +77,37 @@ class HomeAppBar extends StatelessWidget {
                 color: state.theme.iconColor,
                 onPressed: null,
               ),
-              SvgIconButton(
-                icon: AppIcons.cart,
-                color: state.theme.iconColor,
-                onPressed: () => context.pushNamed(RoutesName.CART_LIST),
+              Stack(
+                children: [
+                  SvgIconButton(
+                    icon: AppIcons.cart,
+                    color: state.theme.iconColor,
+                    onPressed: () => context.pushNamed(RoutesName.CART_LIST),
+                  ),
+                  Positioned(
+                    top: 2,
+                    right: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: state.theme.badgeBgColor,
+                      ),
+                      width: 13,
+                      height: 13,
+                      child: Center(
+                        child: Text(
+                          '${context.watch<CartListBloc>().state.cartList.length}',
+                          style: TextStyle(
+                            color: state.theme.badgeNumColor,
+                            fontSize: 9,
+                            fontFamily: 'Pretendard',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
             backgroundColor: Colors.transparent,

@@ -26,173 +26,181 @@ class CartProductCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16)
           .add(EdgeInsets.only(top: 20)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
         children: [
-          // 체크 박스
-          GestureDetector(
-            child: SvgPicture.asset(
-              (isSelected)
-                  ? AppIcons.checkMarkCircleFill
-                  : AppIcons.checkMarkCircle,
-              width: 28,
-              height: 28,
-              colorFilter: ColorFilter.mode(
-                (isSelected) ? colorScheme.primary : colorScheme.contentFourth,
-                BlendMode.srcIn,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 체크 박스
+              GestureDetector(
+                child: SvgPicture.asset(
+                  (isSelected)
+                      ? AppIcons.checkMarkCircleFill
+                      : AppIcons.checkMarkCircle,
+                  width: 28,
+                  height: 28,
+                  colorFilter: ColorFilter.mode(
+                    (isSelected)
+                        ? colorScheme.primary
+                        : colorScheme.contentFourth,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                onTap: () => context
+                    .read<CartListBloc>()
+                    .add(CartListSelected(cart: cart)),
               ),
-            ),
-            onTap: () =>
-                context.read<CartListBloc>().add(CartListSelected(cart: cart)),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
                   children: [
-                    // 상품 정보
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // 상품 명
-                          SizedBox(
-                            height: 28,
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                cart.product.title,
-                                style: textTheme.titleSmall
-                                    ?.titleCopyWith()
-                                    .regular,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // 상품 정보
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // 상품 명
+                              SizedBox(
+                                height: 28,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    cart.product.title,
+                                    style: textTheme.titleSmall
+                                        ?.titleCopyWith()
+                                        .regular,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          const SizedBox(height: 11),
-                          // 상품 정보
-                          SizedBox(
-                            height: 75,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                // 상품 이미지
-                                // CommonImage(
-                                //   cart.product.imageUrl,
-                                //   width: 60,
-                                // ),
-
-                                const SizedBox(width: 20),
-
-                                // 상품 정보
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                              const SizedBox(height: 11),
+                              // 상품 정보
+                              SizedBox(
+                                height: 75,
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: [
-                                    // 가격
-                                    Text(
-                                      cart.product.price.toWon(),
-                                      style: textTheme.titleMedium
-                                          ?.priceCopyWith(),
+                                    // 상품 이미지
+                                    Image.network(
+                                      cart.product.imageUrl,
+                                      width: 60,
                                     ),
 
-                                    Spacer(),
-                                    // 수량 설정
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        border: const Border.fromBorderSide(
-                                          BorderSide(color: AppColors.outline),
+                                    const SizedBox(width: 20),
+
+                                    // 상품 정보
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // 가격
+                                        Text(
+                                          cart.product.price.toWon(),
+                                          style: textTheme.titleMedium
+                                              ?.priceCopyWith(),
                                         ),
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(4),
+
+                                        Spacer(),
+                                        // 수량 설정
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            border: const Border.fromBorderSide(
+                                              BorderSide(
+                                                  color: AppColors.outline),
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(4),
+                                            ),
+                                          ),
+                                          width: 96,
+                                          height: 36,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SvgIconButton(
+                                                icon: AppIcons.subtract,
+                                                // iconSize: 16,
+                                                color: (cart.quantity == 1)
+                                                    ? colorScheme.contentFourth
+                                                    : colorScheme
+                                                        .contentPrimary,
+                                                onPressed: () => context
+                                                    .read<CartListBloc>()
+                                                    .add(CartListQtyDecreased(
+                                                      cart: cart,
+                                                    )),
+                                              ),
+                                              Text(
+                                                cart.quantity.toString(),
+                                                style: textTheme.labelLarge
+                                                    ?.copyWith(
+                                                      color: colorScheme
+                                                          .contentPrimary,
+                                                    )
+                                                    .semiBold,
+                                              ),
+                                              SvgIconButton(
+                                                icon: AppIcons.add,
+                                                // iconSize: 16,
+                                                color:
+                                                    colorScheme.contentPrimary,
+                                                onPressed: () => context
+                                                    .read<CartListBloc>()
+                                                    .add(CartListQtyIncreased(
+                                                      cart: cart,
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      width: 96,
-                                      height: 36,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SvgIconButton(
-                                            icon: AppIcons.subtract,
-                                            // iconSize: 16,
-                                            color: (cart.quantity == 1)
-                                                ? colorScheme.contentFourth
-                                                : colorScheme.contentPrimary,
-                                            onPressed: () => context
-                                                .read<CartListBloc>()
-                                                .add(CartListQtyDecreased(
-                                                  cart: cart,
-                                                )),
-                                          ),
-                                          Text(
-                                            cart.quantity.toString(),
-                                            style: textTheme.labelLarge
-                                                ?.copyWith(
-                                                  color: colorScheme
-                                                      .contentPrimary,
-                                                )
-                                                .semiBold,
-                                          ),
-                                          SvgIconButton(
-                                            icon: AppIcons.add,
-                                            // iconSize: 16,
-                                            color: colorScheme.contentPrimary,
-                                            onPressed: () => context
-                                                .read<CartListBloc>()
-                                                .add(CartListQtyIncreased(
-                                                  cart: cart,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 28,
-                      child: GestureDetector(
-                        child: SvgPicture.asset(
-                          AppIcons.close,
-                          width: 28,
-                          height: 28,
-                          colorFilter: ColorFilter.mode(
-                            colorScheme.contentTertiary,
-                            BlendMode.srcIn,
+                              ),
+                            ],
                           ),
                         ),
-                        onTap: () => context.read<CartListBloc>().add(
-                              CartListDeleted(
-                                productIds: [cart.product.productId],
+                        SizedBox(
+                          height: 28,
+                          child: GestureDetector(
+                            child: SvgPicture.asset(
+                              AppIcons.close,
+                              width: 28,
+                              height: 28,
+                              colorFilter: ColorFilter.mode(
+                                colorScheme.contentTertiary,
+                                BlendMode.srcIn,
                               ),
                             ),
-                      ),
+                            onTap: () => context.read<CartListBloc>().add(
+                                  CartListDeleted(
+                                    productIds: [cart.product.productId],
+                                  ),
+                                ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 40,
-                  ),
-                  child: Divider(
-                    height: 1,
-                    thickness: 1,
-                    color: colorScheme.outline,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: colorScheme.outline.withOpacity(0.2),
           ),
         ],
       ),

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/theme/constant/app_colors.dart';
 import '../../../../../../core/theme/constant/app_icons.dart';
 import '../../../../../../core/theme/custom/custom_font_weight.dart';
-import '../../../../../../core/theme/custom/custom_theme.dart';
 import '../../../../../../domain/model/display/product_info/product_info.model.dart';
 import '../../../bloc/cart_bloc/cart_bloc.dart';
 import '../../../component/widgets/svg_icon_button.dart';
@@ -18,15 +17,13 @@ const double _iconPadding = 8;
 class CartPriceInfo extends StatelessWidget {
   const CartPriceInfo({
     super.key,
-    required this.productInfo,
-    required this.quantity,
   });
-
-  final ProductInfo productInfo;
-  final int quantity;
 
   @override
   Widget build(BuildContext context) {
+    final productInfo = context.watch<CartBloc>().state.productInfo;
+    final quantity = context.watch<CartBloc>().state.quantity;
+
     final textTheme = Theme.of(context).textTheme;
 
     return Padding(
